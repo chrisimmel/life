@@ -57,12 +57,13 @@ BoardModel.step = function() {
  *
  * Parameters:
  *
- *     width - the number of rows or columns.  The board is always square, so the
- *                    width and height are the same.
+ *     widthOrPriorState - Either: the number of columns or rows (in which case a
+ *                          new random layout is generated)
+ *                         OR:  a prior board state (in which case a new layout is
+ *                          generated according to the rules of the simulation.
  *
- *     priorState - (optional) the prior state on which the new state will be based.
- *
- *     density - (optional) the initial density of the layout (0 - 1).
+ *     density - (optional, used only if the first argument is the width)
+ *                the initial density of the layout (0 - 1).
  */
 function BoardState(widthOrPriorState, density) {
     var width;
