@@ -60,7 +60,7 @@ BoardModel.step = function() {
  *     widthOrPriorState - Either: the number of columns or rows (in which case a
  *                          new random layout is generated)
  *                         OR:  a prior board state (in which case a new layout is
- *                          generated according to the rules of the simulation.
+ *                          generated according to the rules of the simulation).
  *
  *     density - (optional, used only if the first argument is the width)
  *                the initial density of the layout (0 - 1).
