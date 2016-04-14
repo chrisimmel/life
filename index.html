@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="cki-life">
+<head>
+<meta charset="utf-8">
+<title>Conway's Life</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="life.css">
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+<div class="page">
+<div class="controls">
+    <div class="buttons">
+        <button id="toggleSim" onClick="BoardController.toggleSimulation();">Go</button>
+        <button onClick="BoardController.resetBoard();">New</button>
+    </div>
+    
+    <div class="sliders">
+        <div class="slider">
+            <label for="width">Width</label>
+            <div class="paramValue" id="widthValue"></div>
+            <input type="range" min="10" max="100" value="20" id="width"/>
+        </div>
+
+        <div class="slider">
+            <label for="density">Density</label>
+            <div class="paramValue" id="densityValue"></div>
+            <input type="range" min="10" max="100" value="20" id="density"/>
+        </div>
+    </div>
+</div>
+
+<div class="boardFrame">
+    <svg class="board"></svg>
+</div>
+
+<div class="results" id="results">
+</div>
+</div>
+
+<!--
+<footer>
+  <aside>March 18, 2016</aside>
+  <a href="../" rel="author">Chris Immel</a>
+</footer>
+-->
+
+</body>
+
+<script type="text/javascript" src="lifeModel.js"></script>
+<script type="text/javascript" src="lifeView.js"></script>
+<script type="text/javascript" src="lifeController.js"></script>
+<script type="text/javascript">
+     window.onload = function() {
+              BoardController.initControls();
+              BoardView.initBoard();
+              BoardController.resetBoard();
+            };
+</script>
+</html>

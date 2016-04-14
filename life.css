@@ -1,0 +1,116 @@
+/*
+ * Top-level layout...
+ */
+
+body {
+    margin-top: 5%;
+    margin-left: 50%;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;
+}
+
+div.controls {
+    font: 14px sans-serif;
+    margin-bottom: 26px;
+    float: left;
+}
+
+/*
+ * Wide-screen layout.
+ */
+@media (min-width: 751px) {
+    div.page {
+        margin-left: -300px;
+    }
+    div.controls {
+        width: 200px;
+    }
+    div.slider {
+        margin-top: 20px;
+    }
+}
+
+/*
+ * Narrow-screen layout.
+ */
+@media (max-width: 750px) {
+    div.page {
+        margin-left: -200px;
+    }
+    div.controls {
+        width: 400px;
+        height: 90px;
+        padding-left: 16px;
+    }
+    div.buttons {
+        height: 44px;
+    }
+}
+
+div.boardFrame {
+    float: left;
+    height: 400px;
+    width: 400px;
+}
+
+div.results {
+    float: left;
+    margin-left: 40px;
+}
+
+/*
+ * User controls...
+ */
+div.sliders {
+    margin-left: 10px;
+}
+div.slider {
+    float: left;
+    margin-right: 30px;
+}
+
+button {
+    margin: 10px;
+    width: 100px;
+    height: 24px;
+    font-size: 14px;
+    background: #ccc;
+    border: none;
+}
+button:hover {
+    background: #ddd;
+}
+
+label {
+    /*clear: both;*/
+    display: block;
+    float: left;
+    margin-right: 6px;
+}
+.paramValue {
+    color: #666;
+    float: left;
+}
+input {
+    margin-top: 4px;
+    clear: both;
+    float: left;
+}
+
+
+/*
+ * SVG elements...
+ */
+circle {
+    fill: rgb(255, 102, 0);
+    visibility: hidden;
+}
+
+svg circle.alive {
+    visibility: visible;
+}
+
