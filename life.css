@@ -44,9 +44,9 @@ div.controls {
         min-width: 440px;
     }
     div.controls {
-        width: auto;
+        width: 376px;
         height: 90px;
-        padding-left: 40px;
+        margin-left: 60px;
     }
     div.buttons {
         height: 44px;
