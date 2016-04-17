@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Conway's Life</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="life.css">
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -13,33 +13,33 @@
 
 <body>
 <div class="page">
-<div class="controls">
-    <div class="buttons">
-        <button id="toggleSim" onClick="BoardController.toggleSimulation();">Go</button>
-        <button onClick="BoardController.resetBoard();">New</button>
-    </div>
+    <div class="controls">
+        <div class="buttons">
+            <button id="toggleSim" onClick="BoardController.toggleSimulation();">Go</button>
+            <button onClick="BoardController.resetBoard();">New</button>
+        </div>
     
-    <div class="sliders">
-        <div class="slider">
-            <label for="width">Width</label>
-            <div class="paramValue" id="widthValue"></div>
-            <input type="range" min="10" max="100" value="20" id="width"/>
-        </div>
+        <div class="sliders">
+            <div class="slider">
+                <label for="width">Width</label>
+                <div class="paramValue" id="widthValue"></div>
+                <input type="range" min="10" max="100" value="20" id="width"/>
+            </div>
 
-        <div class="slider">
-            <label for="density">Density</label>
-            <div class="paramValue" id="densityValue"></div>
-            <input type="range" min="10" max="100" value="20" id="density"/>
+            <div class="slider">
+                <label for="density">Density</label>
+                <div class="paramValue" id="densityValue"></div>
+                <input type="range" min="10" max="100" value="20" id="density"/>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="boardFrame">
-    <svg class="board"></svg>
-</div>
+    <div class="boardFrame">
+        <svg class="board"></svg>
+    </div>
 
-<div class="results" id="results">
-</div>
+    <div class="results" id="results">
+    </div>
 </div>
 
 <!--

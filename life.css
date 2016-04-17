@@ -24,10 +24,10 @@ div.controls {
  */
 @media (min-width: 751px) {
     div.page {
-        margin-left: -300px;
+        margin-left: -280px;
     }
     div.controls {
-        width: 200px;
+        width: 160px;
     }
     div.slider {
         margin-top: 20px;
@@ -39,15 +39,21 @@ div.controls {
  */
 @media (max-width: 750px) {
     div.page {
-        margin-left: -200px;
+        margin-left: -220px;
+        max-width: 440px;
+        min-width: 440px;
     }
     div.controls {
-        width: 400px;
+        width: auto;
         height: 90px;
-        padding-left: 16px;
+        padding-left: 40px;
     }
     div.buttons {
         height: 44px;
+    }
+    div.boardFrame {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 

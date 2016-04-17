@@ -38,7 +38,9 @@ BoardView.initBoard = function() {
  * Renders the given state.
  */
 BoardView.renderState = function(state) {
-    var cellWidth = BoardView.boardWidth / state._width;
+    // A left and right board margin, in pixels.  (Prevents overlap with svg boundary due to auto-scaling on iPhone.)
+    var marginX = 20;
+    var cellWidth = (BoardView.boardWidth - marginX * 2) / state._width;
     var data = state._tiles.map(function(t, i) {
                 var p = state._toPoint(i);
                 return {x: p[0],
@@ -58,9 +60,10 @@ BoardView.renderState = function(state) {
     // Update the class and dimensions af all cells (new and existing).
     cellAll.classed("alive", function(d) { return d.state; })
         .attr("r", (cellWidth - 1) / 2)
-        .attr("cx", function(d) { return d.x * cellWidth + (cellWidth - 1) / 2; })
+        .attr("cx", function(d) { return marginX + d.x * cellWidth + (cellWidth - 1) / 2; })
         .attr("cy", function(d) { return d.y * cellWidth + (cellWidth - 1) / 2; });
 
     // Remove obsolete elements (such as when reducing board size).
     cellAll.exit().remove();
 }
+
