@@ -117,54 +117,6 @@ BoardState.prototype._tiles;
 
 
 /**
- * BoardState.dump()
- *
- * Dumps an ASCII visualization of the board state to the console.
- */
-BoardState.prototype.dump = function() {
-    console.log('Step ' + this._step);
-
-    var i = 0;
-    for (var y = 0; y < this._width; y++) {
-        var row = '' + y + ' ';
-
-        for (var x = 0; x < this._width; x++) {
-            if (this._tiles[i]) {
-                row += '.';
-            }
-            else {
-                row += ' ';
-            }
-            i++;
-        }
-        console.log(row);
-    }
-};
-
-    
-
-/**
- * BoardState.signature()
- *
- * Generates a unique string signature that represents the board state.
- */
-BoardState.prototype.signature = function() {
-    var sig = '';
-    for (var i = 0; i < this._tiles.length; i++) {
-        if (this._tiles[i]) {
-            sig += this._tiles[i].id;
-            sig += '.';
-        }
-        else {
-            sig += ' ';
-        }
-    }
-
-    return sig;
-};
-
-
-/**
  * BoardState._initEmpty()
  *
  * Initializes an empty board state.
@@ -188,7 +140,7 @@ BoardState.prototype._initRandom = function(density) {
     this._initEmpty();
     var numCells = this._width * this._width;
         
-    for (var i = 0; i <= numCells; i++) {
+    for (var i = 0; i < numCells; i++) {
         this._tiles[i] = Math.random() < density ? true : false; 
     }
 };
@@ -205,7 +157,7 @@ BoardState.prototype._initFromPrior = function(priorState) {
 
     var numCells = this._width * this._width;
         
-    for (var i = 0; i <= numCells; i++) {
+    for (var i = 0; i < numCells; i++) {
         this._tiles[i] = priorState.cellShouldLive(i); 
     }
     
@@ -236,7 +188,6 @@ BoardState.prototype._toIndex = function(point) {
 };
 
 
-
 /**
  * Determines whether this and another board state are equal.
  */
@@ -251,6 +202,7 @@ BoardState.prototype.equals = function(state2) {
 
     return equals;
 }
+
 
 /**
  * BoardState.cellShouldLive(index)
@@ -281,7 +233,6 @@ BoardState.prototype.cellShouldLive = function(index) {
     return (alive && numLiveNeighbors == 2 || numLiveNeighbors == 3)
            || (!alive && numLiveNeighbors == 3);
 };
-
 
 
 /**
@@ -332,4 +283,51 @@ BoardState.prototype.getNeighbors = function(index) {
     }
         
     return neighbors;
+};
+
+
+/**
+ * BoardState.dump()
+ *
+ * Dumps an ASCII visualization of the board state to the console.
+ */
+BoardState.prototype.dump = function() {
+    console.log('Step ' + this._step);
+
+    var i = 0;
+    for (var y = 0; y < this._width; y++) {
+        var row = '' + y + ' ';
+
+        for (var x = 0; x < this._width; x++) {
+            if (this._tiles[i]) {
+                row += '.';
+            }
+            else {
+                row += ' ';
+            }
+            i++;
+        }
+        console.log(row);
+    }
+};
+    
+
+/**
+ * BoardState.signature()
+ *
+ * Generates a unique string signature that represents the board state.
+ */
+BoardState.prototype.signature = function() {
+    var sig = '';
+    for (var i = 0; i < this._tiles.length; i++) {
+        if (this._tiles[i]) {
+            sig += this._tiles[i].id;
+            sig += '.';
+        }
+        else {
+            sig += ' ';
+        }
+    }
+
+    return sig;
 };
