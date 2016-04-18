@@ -79,7 +79,7 @@ function BoardState(widthOrPriorState, density) {
     }
     
     this._width = width;
-    this._tiles = null;
+    this._cells = null;
 
     if (priorState) {
         this._initFromPrior(priorState);
@@ -109,11 +109,11 @@ BoardState.prototype._width;
 BoardState.prototype._step;
 
 /**
- * BoardState._tiles
+ * BoardState._cells
  *
- * The matrix of tiles, stored in a 1-dimensional array.
+ * The matrix of cells, stored in a 1-dimensional array.
  */
-BoardState.prototype._tiles;
+BoardState.prototype._cells;
 
 
 /**
@@ -122,7 +122,7 @@ BoardState.prototype._tiles;
  * Initializes an empty board state.
  */
 BoardState.prototype._initEmpty = function() {
-    this._tiles = new Array(this._width * this._width);
+    this._cells = new Array(this._width * this._width);
     this._step = 0;
 };
 
@@ -141,7 +141,7 @@ BoardState.prototype._initRandom = function(density) {
     var numCells = this._width * this._width;
         
     for (var i = 0; i < numCells; i++) {
-        this._tiles[i] = Math.random() < density ? true : false; 
+        this._cells[i] = Math.random() < density ? true : false; 
     }
 };
 
@@ -158,7 +158,7 @@ BoardState.prototype._initFromPrior = function(priorState) {
     var numCells = this._width * this._width;
         
     for (var i = 0; i < numCells; i++) {
-        this._tiles[i] = priorState.cellShouldLive(i); 
+        this._cells[i] = priorState.cellShouldLive(i); 
     }
     
     this._step = priorState._step + 1;
@@ -195,8 +195,8 @@ BoardState.prototype.equals = function(state2) {
     var equals = !!state2;
 
     if (equals) {
-        for (var i = 0; equals && i < this._tiles.length; i++) {
-            equals = this._tiles[i] == state2._tiles[i];
+        for (var i = 0; equals && i < this._cells.length; i++) {
+            equals = this._cells[i] == state2._cells[i];
         }
     }
 
@@ -216,11 +216,11 @@ BoardState.prototype.equals = function(state2) {
  */
 BoardState.prototype.cellShouldLive = function(index) {
     var neighbors = this.getNeighbors(index);
-    var alive = this._tiles[index];
+    var alive = this._cells[index];
     var numLiveNeighbors = 0;
 
     for (var i = 0; i < neighbors.length; i++) {
-        if (this._tiles[neighbors[i]]) {
+        if (this._cells[neighbors[i]]) {
             numLiveNeighbors++;
         }
     }
@@ -299,7 +299,7 @@ BoardState.prototype.dump = function() {
         var row = '' + y + ' ';
 
         for (var x = 0; x < this._width; x++) {
-            if (this._tiles[i]) {
+            if (this._cells[i]) {
                 row += '.';
             }
             else {
@@ -319,9 +319,9 @@ BoardState.prototype.dump = function() {
  */
 BoardState.prototype.signature = function() {
     var sig = '';
-    for (var i = 0; i < this._tiles.length; i++) {
-        if (this._tiles[i]) {
-            sig += this._tiles[i].id;
+    for (var i = 0; i < this._cells.length; i++) {
+        if (this._cells[i]) {
+            sig += this._cells[i].id;
             sig += '.';
         }
         else {

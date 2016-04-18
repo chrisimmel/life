@@ -41,7 +41,7 @@ BoardView.renderState = function(state) {
     // A left and right board margin, in pixels.  (Prevents overlap with svg boundary due to auto-scaling on iPhone.)
     var marginX = 20;
     var cellWidth = (BoardView.boardWidth - marginX * 2) / state._width;
-    var data = state._tiles.map(function(t, i) {
+    var data = state._cells.map(function(t, i) {
                 var p = state._toPoint(i);
                 return {x: p[0],
                         y: p[1],
