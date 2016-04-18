@@ -14,12 +14,24 @@ function BoardModel() {}
 BoardModel._state = null;
 
 /**
+ * The prior board state.
+ */
+BoardModel._priorState = null;
+
+/**
+ * The prior board state.
+ */
+BoardModel._finished = false;
+
+/**
  * BoardModel.init
  *
  * Initializes the board with the given width and initial density.
  */
 BoardModel.init = function(width, density) {
     BoardModel._state = new BoardState(width, density);
+    BoardModel._priorState = null;
+    BoardModel._finished = false;
     BoardModel._state.dump();
 }
 
@@ -29,19 +41,25 @@ BoardModel.init = function(width, density) {
  * Proceeds forward one generation in the Life simulation.
  */
 BoardModel.step = function() {
-    var more = false;
+    var more;
 
     if (BoardModel._state != null) {
         var newState = new BoardState(BoardModel._state);
         //newState.dump();
 
-        if (newState.equals(BoardModel._state)) {
-            //BoardModel.stop();
+        if (newState.equals(BoardModel._state)
+            || (BoardModel._priorState && newState.equals(BoardModel._priorState))) {
+            // There has been a 1 or 2 generation cycle.  We can stop the simulation.
+            more = false;
+            BoardModel._finished = true;
         }
         else {
-            BoardModel._state = newState;
+            // No cycle was detected.  Continue the simulation.
             more = true;
         }
+
+        BoardModel._priorState = BoardModel._state;
+        BoardModel._state = newState;
     }
 
     return more;
@@ -205,6 +223,21 @@ BoardState.prototype.equals = function(state2) {
 
 
 /**
+ * Gets the density of the board state (0-1).
+ */
+BoardState.prototype.getDensity = function() {
+    var liveCount = 0;
+
+    for (var i = 0; i < this._cells.length; i++) {
+        if (this._cells[i]) {
+            liveCount++;
+        }
+    }
+
+    return liveCount / this._cells.length;
+}
+
+/**
  * BoardState.cellShouldLive(index)
  *
  * Determines whether the given cell should live in the next iteration.
@@ -310,24 +343,4 @@ BoardState.prototype.dump = function() {
         console.log(row);
     }
 };
-    
 
-/**
- * BoardState.signature()
- *
- * Generates a unique string signature that represents the board state.
- */
-BoardState.prototype.signature = function() {
-    var sig = '';
-    for (var i = 0; i < this._cells.length; i++) {
-        if (this._cells[i]) {
-            sig += this._cells[i].id;
-            sig += '.';
-        }
-        else {
-            sig += ' ';
-        }
-    }
-
-    return sig;
-};

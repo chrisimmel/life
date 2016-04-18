@@ -65,5 +65,12 @@ BoardView.renderState = function(state) {
 
     // Remove obsolete elements (such as when reducing board size).
     cellAll.exit().remove();
+
+    d3.select("#stepValue").html(state._step);
+    d3.select("#densityValue").html('' + Math.round(state.getDensity() * 100) + '%');
+
+    if (BoardModel._finished) {
+        d3.select("#state").html("(finished)");
+    }
 }
 

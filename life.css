@@ -32,6 +32,9 @@ div.controls {
     div.slider {
         margin-top: 20px;
     }
+    div.stats {
+        margin-top: 50px;
+    }
 }
 
 /*
@@ -45,7 +48,6 @@ div.controls {
     }
     div.controls {
         width: 376px;
-        height: 90px;
         margin-left: 60px;
     }
     div.buttons {
@@ -54,6 +56,9 @@ div.controls {
     div.boardFrame {
         margin-left: 20px;
         margin-right: 20px;
+    }
+    div.stats {
+        width: 300px;
     }
 }
 
@@ -107,6 +112,23 @@ input {
     float: left;
 }
 
+/*
+ * Statistics
+ */
+.stats {
+    float: left;
+    clear: left;
+    margin-top: 14px;
+    margin-left: 10px;
+}
+.stat {
+    float: left;
+    width: 100px;
+    margin-bottom: 8px;
+}
+.state {
+    color: #666;
+}
 
 /*
  * SVG elements...

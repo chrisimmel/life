@@ -27,18 +27,29 @@
             </div>
 
             <div class="slider">
-                <label for="density">Density</label>
+                <label for="density">Initial Density</label>
+                <div class="paramValue" id="initDensityValue"></div>
+                <input type="range" min="10" max="100" value="20" id="initDensity"/>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stat">
+                <label for="stepValue">Step</label>
+                <div class="paramValue" id="stepValue"></div>
+            </div>
+
+            <div class="stat">
+                <label for="stepValue">Density</label>
                 <div class="paramValue" id="densityValue"></div>
-                <input type="range" min="10" max="100" value="20" id="density"/>
+            </div>
+            <div class="state" id="state">
             </div>
         </div>
     </div>
 
     <div class="boardFrame">
         <svg class="board"></svg>
-    </div>
-
-    <div class="results" id="results">
     </div>
 </div>
 

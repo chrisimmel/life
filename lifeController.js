@@ -41,14 +41,14 @@ BoardController.initControls = function() {
         .attr("value", BoardController._width);
     d3.select("#widthValue").html(BoardController._width);
 
-    d3.select("#density").on("change", function() {
+    d3.select("#initDensity").on("change", function() {
             BoardController._initialDensity = this.value / 100.0;
-            d3.select("#densityValue").html(Math.round(BoardController._initialDensity * 100));
+            d3.select("#initDensityValue").html('' + Math.round(BoardController._initialDensity * 100) + '%');
 
             BoardController.resetBoard();
         })
         .attr("value", Math.round(BoardController._initialDensity * 100));
-    d3.select("#densityValue").html(Math.round(BoardController._initialDensity * 100));
+    d3.select("#initDensityValue").html('' + Math.round(BoardController._initialDensity * 100) + '%');
 }
 
 
@@ -66,6 +66,7 @@ BoardController.resetBoard = function() {
     BoardView.renderState(BoardModel._state);
 
     //d3.select("#results").selectAll("p").remove();
+    d3.select("#state").html("");
 };
 
 
