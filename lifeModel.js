@@ -19,7 +19,7 @@ BoardModel._state = null;
 BoardModel._priorState = null;
 
 /**
- * The prior board state.
+ * Whether the simulation is complete.
  */
 BoardModel._finished = false;
 
@@ -39,10 +39,10 @@ BoardModel.init = function(width, density) {
  * BoardModel.step
  *
  * Proceeds forward one generation in the Life simulation.
+ *
+ * Returns true iff the simulation should continue.
  */
 BoardModel.step = function() {
-    var more;
-
     if (BoardModel._state != null) {
         var newState = new BoardState(BoardModel._state);
         //newState.dump();
@@ -50,19 +50,17 @@ BoardModel.step = function() {
         if (newState.equals(BoardModel._state)
             || (BoardModel._priorState && newState.equals(BoardModel._priorState))) {
             // There has been a 1 or 2 generation cycle.  We can stop the simulation.
-            more = false;
             BoardModel._finished = true;
         }
         else {
             // No cycle was detected.  Continue the simulation.
-            more = true;
         }
 
         BoardModel._priorState = BoardModel._state;
         BoardModel._state = newState;
     }
 
-    return more;
+    return !BoardModel._finished;
 }
 
 
