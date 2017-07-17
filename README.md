@@ -15,6 +15,8 @@ Features:
 
 * Button to generate a new random starting layout.
 
+Try it out at:  http://luminifera.net/life/
+
 Have fun, and let me know what you think!
 
 Chris Immel
